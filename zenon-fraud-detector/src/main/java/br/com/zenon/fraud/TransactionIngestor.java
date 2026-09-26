@@ -16,9 +16,9 @@ import java.util.stream.Stream;
 public class TransactionIngestor {
 
     private static final Logger LOGGER = Logger.getLogger(TransactionIngestor.class.getName());
-    private static final Integer TOTAL_LINES_READER = 1000;
+    private static final Integer TOTAL_LINES_READER = 50000;
 
-    public List<Transaction> findFirstsResultsWithFiles(String name){
+    public List<Transaction> read(String name){
         Path path = Path.of(name);
         try(Stream<String> lines = Files.lines(path)){
             return lines.skip(1).limit(TOTAL_LINES_READER).map(this::transformObject).filter(Optional::isPresent).map(Optional::get).toList();
