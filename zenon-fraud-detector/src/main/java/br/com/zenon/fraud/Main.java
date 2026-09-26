@@ -6,13 +6,14 @@ import java.util.List;
 public class Main {
 
     static void main(String[] args) throws IOException {
-        String archive = "../data/logs.csv";
+        String archive = "../data/paysim_with_bad_data.csv";
 
         TransactionIngestor ingestor = new TransactionIngestor();
 
         List<Transaction> firstsResults = ingestor.findFirstsResultsWithFiles(archive);
+        IO.println(firstsResults.size());
 
-        firstsResults.stream().limit(10).forEach(IO::println);
+        firstsResults.forEach(IO::println);
 
     }
 }
