@@ -1,7 +1,6 @@
 package br.com.zenon.fraud;
 
 import java.math.BigDecimal;
-import java.text.NumberFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -32,7 +31,7 @@ public class FraudAnalyzer {
         return onlyFrauds.stream().map(Transaction::amount).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
     }
 
-    public Map<TransactionalType, List<Transaction>> fraudesPorTipo(){
+    public Map<TransactionType, List<Transaction>> fraudesPorTipo(){
         var onlyFrauds = transactions.stream().filter(Transaction::isFraud).toList();
         return onlyFrauds.stream().sorted(Comparator.comparing(Transaction::type)).collect(Collectors.groupingBy(Transaction::type));
     }

@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public record Transaction(
         Integer step,
-        TransactionalType type,
+        TransactionType type,
         BigDecimal amount,
         TransactionalCostumer origin,
         TransactionalCostumer recipient,

@@ -1,13 +1,9 @@
 package br.com.zenon.fraud;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.MalformedParametersException;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -16,7 +12,7 @@ import java.util.stream.Stream;
 public class TransactionIngestor {
 
     private static final Logger LOGGER = Logger.getLogger(TransactionIngestor.class.getName());
-    private static final Integer TOTAL_LINES_READER = 50000;
+    private static final Integer TOTAL_LINES_READER = 100000;
 
     public List<Transaction> read(String name){
         Path path = Path.of(name);
@@ -33,7 +29,7 @@ public class TransactionIngestor {
         var chunks = line.split(",");
 
         var step = Integer.valueOf(chunks[0]);
-        var type = TransactionalType.valueOf(chunks[1]);
+        var type = TransactionType.valueOf(chunks[1]);
         var amount = new BigDecimal(chunks[2]);
         var nameOrigin = chunks[3];
         var oldBalanceOrig = new BigDecimal(chunks[4]);
